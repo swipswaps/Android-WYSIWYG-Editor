@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+
+group='com.github.stom79'
+
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'laser-native-editor'
@@ -36,20 +39,10 @@ android {
     }
 }
 
-tasks.withType(Javadoc).all {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('encoding', 'UTF-8')
-    options.addStringOption('charSet', 'UTF-8')
-}
-
-
 
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
     implementation "com.android.support:support-v4:$supportLibVersion"
     implementation "com.android.support:design:$supportLibVersion"
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
