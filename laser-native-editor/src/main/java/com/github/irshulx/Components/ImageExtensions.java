@@ -127,7 +127,10 @@ public class ImageExtensions extends EditorComponent {
             String dataTag = element.attr("data-tag");
             if (dataTag.equals("img")) {
                 Element img = element.child(0);
-                Element descTag = element.child(1);
+                Element descTag = null;
+                if( element.childNodeSize() > 1) {
+                    descTag = element.child(1);
+                }
                 String src = img.attr("src");
                 loadImage(src, descTag);
             }
@@ -273,7 +276,10 @@ public class ImageExtensions extends EditorComponent {
       /used by the renderer to render the image from the Node
     */
     public void loadImage(String _path, Node node) {
-        String desc = node.content.get(0);
+        String desc = "";
+        if( node != null){
+            desc = node.content.get(0);
+        }
         final View childLayout = loadImageRemote(_path, desc);
         CustomEditText text = childLayout.findViewById(R.id.desc);
         if (!TextUtils.isEmpty(desc)) {
